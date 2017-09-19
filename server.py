@@ -1,12 +1,11 @@
 import os
-import json
 import pandas as pd
 from sklearn.externals import joblib
 from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-@app.route('/flask_predict', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def apicall():
 	"""API Call
 	
@@ -14,11 +13,11 @@ def apicall():
 	"""
 	try:
 		test_json = request.get_json()
-		test = pd.read_json(test_json)
+		test = pd.read_json(test_json, orient='split')
 	except Exception as e:
 		raise e
 	
-	clf = 'model1.pk'
+	clf = 'model_v1.pk'
 	
 	if test.empty:
 		return(bad_request())
@@ -52,7 +51,3 @@ def bad_request(error=None):
 	resp.status_code = 400
 
 	return resp
-
-
-if __name__ == '__main__':
-	app.run(debug=False, host="0.0.0.0", port=8080)
