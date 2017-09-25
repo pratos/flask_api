@@ -11,8 +11,8 @@
 *
 */
 /*!
- * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -1107,7 +1107,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2536,7 +2535,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3027,7 +3025,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -8758,6 +8755,9 @@ body > #header .header-bar {
     margin-left: 10px;
   }
 }
+[dir="rtl"] #ipython_notebook {
+  float: right !important;
+}
 #noscript {
   width: auto;
   padding-top: 16px;
@@ -8960,8 +8960,14 @@ span#login_widget > .button .badge,
  *
  * Author: Jupyter Development Team
  */
+[dir="rtl"] #tabs li {
+  float: right;
+}
 ul#tabs {
   margin-bottom: 4px;
+}
+[dir="rtl"] ul#tabs {
+  margin-right: 0px;
 }
 ul#tabs a {
   padding-top: 6px;
@@ -8984,6 +8990,16 @@ ul.breadcrumb span {
 }
 .list_toolbar .tree-buttons {
   padding-top: 1px;
+}
+[dir="rtl"] .list_toolbar .tree-buttons {
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-right {
+  padding-top: 1px;
+  float: left !important;
+}
+[dir="rtl"] .list_toolbar .pull-left {
+  float: right !important;
 }
 .dynamic-buttons {
   padding-top: 3px;
@@ -9120,6 +9136,9 @@ ul.breadcrumb span {
 #tree-selector {
   padding-right: 0px;
 }
+[dir="rtl"] #tree-selector a {
+  float: right;
+}
 #button-select-all {
   min-width: 50px;
 }
@@ -9209,6 +9228,9 @@ ul#new-menu {
   left: auto;
   right: 0;
 }
+[dir="rtl"] #new-menu {
+  text-align: right;
+}
 .kernel-menu-icon {
   padding-right: 12px;
   width: 24px;
@@ -9253,6 +9275,9 @@ ul#new-menu {
 }
 #running .panel-group .panel .panel-body .list_container .list_item:last-child {
   border-bottom: 0px;
+}
+[dir="rtl"] #running .col-sm-8 {
+  float: right !important;
 }
 .delete-button {
   display: none;
@@ -9549,6 +9574,7 @@ div.cell.selected.jupyter-soft-selected {
   }
 }
 div.inner_cell {
+  min-width: 0;
   /* Old browsers */
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -9569,11 +9595,6 @@ div.inner_cell {
   box-flex: 1;
   /* Modern browsers */
   flex: 1;
-}
-@-moz-document url-prefix() {
-  div.inner_cell {
-    overflow-x: hidden;
-  }
 }
 /* input_area and input_prompt must match in top border and margin for alignment */
 div.input_area {
@@ -11244,7 +11265,7 @@ div#pager .ui-resizable-handle::after {
 }
 .shortcut_key {
   display: inline-block;
-  width: 20ex;
+  width: 21ex;
   text-align: right;
   font-family: monospace;
 }
@@ -11556,6 +11577,7 @@ ul.typeahead-list > li > a {
   box-shadow: 0px 0px 12px 1px rgba(87, 87, 87, 0.2);
 }
 .terminal-app .terminal {
+  width: 100%;
   float: left;
   font-family: monospace;
   color: white;
@@ -11569,6 +11591,9 @@ ul.typeahead-list > li > a {
 .terminal-app .terminal dummy-screen {
   line-height: 1em;
   font-size: 14px;
+}
+.terminal-app .terminal .xterm-rows {
+  padding: 10px;
 }
 .terminal-app .terminal-cursor {
   color: black;
@@ -11701,9 +11726,7 @@ body {
 div#notebook {
   overflow: visible;
   border-top: none;
-}
-
-@media print {
+}@media print {
   div.cell {
     display: block;
     page-break-inside: avoid;
@@ -11724,7 +11747,7 @@ div#notebook {
 
 <!-- Loading mathjax macro -->
 <!-- Load mathjax -->
-    <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
     <!-- MathJax configuration -->
     <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
@@ -11748,8 +11771,7 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11763,11 +11785,25 @@ div#notebook {
 <li><strong>API-first approach</strong></li>
 </ul>
 <p>Web APIs have made it easy for cross-language applications to work well. If a frontend developer needs to use your ML Model to create a ML powered web application, he would just need to get the <code>URL Endpoint</code> from where the API is being served.</p>
-<p>A simple REST call would make things easier. In this article, we'll understand how to create APIs using <code>Flask</code>, a web framework with <code>Python</code>.</p>
+<p>The articles below would help you to appreciate why APIs are a popular choice amongst developers:</p>
+<ul>
+<li><a href="http://apievangelist.com/2012/12/20/history-of-apis/">History of APIs</a></li>
+<li><a href="https://www.analyticsvidhya.com/blog/2016/11/an-introduction-to-apis-application-programming-interfaces-5-apis-a-data-scientist-must-know/">Introduction to APIs - AV Article</a></li>
+</ul>
+<p>Majority of the Big Cloud providers and smaller Machine Learning focussed companies provide ready-to-use APIs. They cater to the needs of developers/businesses that don't have expertise in ML, who want to implement ML in their processes or product suites.</p>
+<p>One such example of Web APIs offered is the <a href="https://cloud.google.com/vision/">Google Vision API</a></p>
+<p><img src="http://www.publickey1.jp/2016/gcpnext16.jpg" alt="Google API Suite"></p>
+<p>All you need is a simple REST call to the API via SDKs (Software Development Kits) provided by Google. <a href="https://github.com/GoogleCloudPlatform/cloud-vision/tree/master/python">Click here</a> to get an idea of what can be done using Google Vision API.</p>
+<p>Sounds marvellous right! In this article, we'll understand how to create our own Machine Learning API using <code>Flask</code>, a web framework with <code>Python</code>.</p>
 <p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/640px-Flask_logo.svg.png" alt="Flask"></p>
-<p>(NOTE: <code>Flask</code> isn't the only web-framework available. There's <code>Django</code>, <code>Falcon</code>, <code>Hug</code> and many more. For <code>R</code>, we have a package called <a href="https://github.com/trestletech/plumber"><code>plumber</code></a>.</p>
-<p>Let's dive in!</p>
-<h3 id="Environment-Setup-&amp;-Flask-Basics">Environment Setup &amp; Flask Basics<a class="anchor-link" href="#Environment-Setup-&amp;-Flask-Basics">&#182;</a></h3><p><img src="https://upload.wikimedia.org/wikipedia/en/c/cd/Anaconda_Logo.png" alt="Anaconda"></p>
+<p><strong>NOTE:</strong> <code>Flask</code> isn't the only web-framework available. There's <code>Django</code>, <code>Falcon</code>, <code>Hug</code> and many more. For <code>R</code>, we have a package called <a href="https://github.com/trestletech/plumber"><code>plumber</code></a>.</p>
+<h3 id="Table-of-Contents:">Table of Contents:<a class="anchor-link" href="#Table-of-Contents:">&#182;</a></h3><ol>
+<li><strong>Python Environment Setup &amp; Flask Basics</strong></li>
+<li><strong>Creating a Machine Learning Model</strong></li>
+<li><strong>Saving the Machine Learning Model: Serialization &amp; Deserialization</strong></li>
+<li><strong>Creating an API using Flask</strong></li>
+</ol>
+<h3 id="1.-Python-Environment-Setup-&amp;-Flask-Basics">1. Python Environment Setup &amp; Flask Basics<a class="anchor-link" href="#1.-Python-Environment-Setup-&amp;-Flask-Basics">&#182;</a></h3><p><img src="https://upload.wikimedia.org/wikipedia/en/c/cd/Anaconda_Logo.png" alt="Anaconda"></p>
 <ul>
 <li>Creating a virtual environment using <code>Anaconda</code>. If you need to create your workflows in Python and keep the dependencies separated out or share the environment settings, <code>Anaconda</code> distributions are a great option. <ul>
 <li>You'll find a miniconda installation for Python <a href="https://conda.io/miniconda.html">here</a></li>
@@ -11783,40 +11819,46 @@ div#notebook {
 </li>
 </ul>
 <ul>
-<li>We'll try out a simple <code>Flask</code> Hello-World application and serve it using <code>gunicorn</code>:</li>
-</ul>
+<li><p>We'll try out a simple <code>Flask</code> Hello-World application and serve it using <code>gunicorn</code>:</p>
+<ul>
+<li>Open up your favourite text editor and create <code>hello-world.py</code> file in a folder</li>
+<li><p>Write the code below:</p>
 <div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;Filename: hello-world.py</span>
-<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">  &quot;&quot;&quot;</span>
 
-<span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+  <span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+  <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
-<span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/users/&lt;string:username&gt;&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+  <span class="nd">@app.route</span><span class="p">(</span><span class="s1">&#39;/users/&lt;string:username&gt;&#39;</span><span class="p">)</span>
+  <span class="k">def</span> <span class="nf">hello_world</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
 
-    <span class="k">return</span><span class="p">(</span><span class="s2">&quot;Hello {}!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
+      <span class="k">return</span><span class="p">(</span><span class="s2">&quot;Hello {}!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">username</span><span class="p">))</span>
 </pre></div>
-<ul>
-<li>To serve it, run: <code>gunicorn --bind 0.0.0.0:8000 hello-world:app</code> on your terminal.</li>
+</li>
+<li>Save the file and return to the terminal.</li>
+<li><p>To serve the API (to start running it), execute: <code>gunicorn --bind 0.0.0.0:8000 hello-world:app</code> on your terminal.</p>
+</li>
+<li><p>If you get the repsonses below, you are on the right track:</p>
+<p><img src="https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp1.png" alt="Hello World"></p>
+</li>
+<li><p>On you browser, try out: <code>https://localhost:8000/users/any-name</code></p>
+<p><img src="https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp2.png" alt="Browser"></p>
+</li>
 </ul>
-<p><img src="./images/flaskapp1.png" alt="Hello World"></p>
-<ul>
-<li>On you browser, try out: <code>https://localhost:8000/users/any-name</code></li>
+</li>
 </ul>
-<p><img src="./images/flaskapp2.png" alt="Browser"></p>
-<p>With a few simple steps, we were able to create web-endpoints that can be accessed locally.</p>
+<p>Viola! You wrote your first Flask application. As you have now experienced with a few simple steps, we were able to create web-endpoints that can be accessed locally. And it remains simple going forward too.</p>
 <p>Using <code>Flask</code>, we can wrap our Machine Learning models and serve them as Web APIs easily. Also, if we want to create more complex web applications (that includes JavaScript <code>*gasps*</code>) we just need a few modifications.</p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Creating-a-Machine-Learning-Model">Creating a Machine Learning Model<a class="anchor-link" href="#Creating-a-Machine-Learning-Model">&#182;</a></h3><ul>
+<h3 id="2.-Creating-a-Machine-Learning-Model">2. Creating a Machine Learning Model<a class="anchor-link" href="#2.-Creating-a-Machine-Learning-Model">&#182;</a></h3><ul>
 <li>We'll be taking up the Machine Learning competition: <a href="https://datahack.analyticsvidhya.com/contest/practice-problem-loan-prediction-iii">Loan Prediction Competition</a>. The main objective is to set a pre-processing pipeline and creating ML Models with goal towards making the ML Predictions easy while deployments. </li>
 </ul>
 
@@ -11848,8 +11890,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11876,7 +11917,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>test.csv  training.csv
 </pre>
@@ -11916,7 +11961,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11957,7 +12006,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[5]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[5]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -11970,8 +12023,7 @@ div#notebook {
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -11999,7 +12051,11 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>The number of null values in:Loan_ID == 0
 The number of null values in:Gender == 13
@@ -12022,8 +12078,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12051,8 +12106,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12123,8 +12177,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12149,8 +12202,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12189,7 +12241,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12209,8 +12265,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12238,8 +12293,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12263,8 +12317,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12291,7 +12344,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[14]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12314,8 +12371,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12342,7 +12398,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Best parameters: {&#39;randomforestclassifier__n_estimators&#39;: 30, &#39;randomforestclassifier__max_leaf_nodes&#39;: 20, &#39;randomforestclassifier__min_impurity_split&#39;: 0.2, &#39;randomforestclassifier__max_depth&#39;: 8}
 </pre>
@@ -12353,8 +12413,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12381,7 +12440,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Validation set score: 0.79
 </pre>
@@ -12392,8 +12455,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12434,7 +12496,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <div>
@@ -12559,7 +12625,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[20]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12572,8 +12642,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12582,17 +12651,15 @@ The number of null values in:Loan_Status == 0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Saving-the-ML-Model-to-serialize-&amp;-de-serialize">Saving the ML Model to serialize &amp; de-serialize<a class="anchor-link" href="#Saving-the-ML-Model-to-serialize-&amp;-de-serialize">&#182;</a></h3>
+<h3 id="3.-Saving-Machine-Learning-Model-:-Serialization-&amp;-Deserialization">3. Saving Machine Learning Model : Serialization &amp; Deserialization<a class="anchor-link" href="#3.-Saving-Machine-Learning-Model-:-Serialization-&amp;-Deserialization">&#182;</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12637,7 +12704,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[22]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[22]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12650,8 +12721,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12689,7 +12759,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[24]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12702,8 +12776,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12734,7 +12807,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Requirement already satisfied: dill in /home/pratos/miniconda3/envs/ordermanagement/lib/python3.5/site-packages
 </pre>
@@ -12773,8 +12850,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12814,7 +12890,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[29]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -12827,8 +12907,7 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12838,22 +12917,20 @@ The number of null values in:Loan_Status == 0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Creating-an-API-using-Flask">Creating an API using Flask<a class="anchor-link" href="#Creating-an-API-using-Flask">&#182;</a></h3>
+<h3 id="4.-Creating-an-API-using-Flask">4. Creating an API using Flask<a class="anchor-link" href="#4.-Creating-an-API-using-Flask">&#182;</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We'll keep the folder structure as simple as possible:</p>
-<p><img src="./images/flaskapp3.png" alt="Folder Struct"></p>
+<p><img src="https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp3.png" alt="Folder Struct"></p>
 <p>There are three important parts in constructing our wrapper function, <code>apicall()</code>:</p>
 <ul>
 <li><p>Getting the <code>request</code> data (for which predictions are to be made)</p>
@@ -12869,8 +12946,7 @@ The number of null values in:Loan_Status == 0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -12938,8 +13014,7 @@ The number of null values in:Loan_Status == 0
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13003,7 +13078,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[33]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[33]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13049,7 +13128,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[35]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[35]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13080,7 +13163,11 @@ The number of null values in:Loan_Status == 0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[36]:</div>
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[36]:</div>
+
+
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -13093,29 +13180,35 @@ The number of null values in:Loan_Status == 0
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Final-Thoughts">Final Thoughts<a class="anchor-link" href="#Final-Thoughts">&#182;</a></h4>
+<h3 id="End-Notes">End Notes<a class="anchor-link" href="#End-Notes">&#182;</a></h3>
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We have half the battle won here, with a working API that serves predictions in a way where we take one step towards integrating our ML solutions right into our products. This is a very basic API that will help with proto-typing a data product, to make it as fully functional, production ready API a few more additions are required that aren't in the scope of Machine Learning.</p>
+<p>There are a few things to keep in mind when adopting API-first approach:</p>
+<ul>
+<li><p>Creating APIs out of sphagetti code is next to impossible, so approach your Machine Learning workflow as if you need to create a clean, usable API as a deliverable. Will save you a lot of effort to jump hoops later.</p>
+</li>
+<li><p>Try to use version control for models and the API code, <code>Flask</code> doesn't provide great support for version control. Saving and keeping track of ML Models is difficult, find out the least messy way that suits you. <a href="https://medium.com/towards-data-science/how-to-version-control-your-machine-learning-task-cad74dce44c4">This article</a> talks about ways to do it.</p>
+</li>
+<li><p>Specific to <code>sklearn models</code> (as done in this article), if you are using custom <code>estimators</code> for preprocessing or any other related task make sure you keep the <code>estimator</code> and <code>training code</code> together so that the model pickled would have the <code>estimator</code> class tagged along.</p>
+</li>
+</ul>
 <p>Next logical step would be creating a workflow to deploy such APIs out on a small VM. There are various ways to do it and we'll be looking into those in the next article.</p>
-<p>Code &amp; Notebook for this repository: <a href="https://github.com/pratos/flask_api">pratos/flask_api</a></p>
+<p>Code &amp; Notebooks for this article: <a href="https://github.com/pratos/flask_api">pratos/flask_api</a></p>
 
 </div>
 </div>
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13123,6 +13216,7 @@ The number of null values in:Loan_Status == 0
 <p>[1]. <a id='no1' href="http://www.benfrederickson.com/dont-pickle-your-data/">Don't Pickle your data.</a></p>
 <p>[2]. <a id='no2' href="http://www.dreisbach.us/articles/building-scikit-learn-compatible-transformers/">Building Scikit Learn compatible transformers.</a></p>
 <p>[3]. <a id='no2' href="http://flask.pocoo.org/docs/0.10/security/#json-security">Using jsonify in Flask.</a></p>
+<p>[4]. <a id='no2' href="http://blog.luisrei.com/articles/flaskrest.html">Flask-QuickStart.</a></p>
 
 </div>
 </div>

@@ -15,15 +15,33 @@ The above seems like a good idea, but the time & energy required to get those in
 
 Web APIs have made it easy for cross-language applications to work well. If a frontend developer needs to use your ML Model to create a ML powered web application, he would just need to get the `URL Endpoint` from where the API is being served. 
 
-A simple REST call would make things easier. In this article, we'll understand how to create APIs using `Flask`, a web framework with `Python`. 
+The articles below would help you to appreciate why APIs are a popular choice amongst developers:
+
+- [History of APIs](http://apievangelist.com/2012/12/20/history-of-apis/)
+- [Introduction to APIs - AV Article](https://www.analyticsvidhya.com/blog/2016/11/an-introduction-to-apis-application-programming-interfaces-5-apis-a-data-scientist-must-know/)
+
+Majority of the Big Cloud providers and smaller Machine Learning focussed companies provide ready-to-use APIs. They cater to the needs of developers/businesses that don't have expertise in ML, who want to implement ML in their processes or product suites.
+
+One such example of Web APIs offered is the [Google Vision API](https://cloud.google.com/vision/)
+
+![Google API Suite](http://www.publickey1.jp/2016/gcpnext16.jpg)
+
+All you need is a simple REST call to the API via SDKs (Software Development Kits) provided by Google. [Click here](https://github.com/GoogleCloudPlatform/cloud-vision/tree/master/python) to get an idea of what can be done using Google Vision API.
+
+Sounds marvellous right! In this article, we'll understand how to create our own Machine Learning API using `Flask`, a web framework with `Python`. 
 
 ![Flask](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/640px-Flask_logo.svg.png)
 
-(NOTE: `Flask` isn't the only web-framework available. There's `Django`, `Falcon`, `Hug` and many more. For `R`, we have a package called [`plumber`](https://github.com/trestletech/plumber).
+__NOTE:__ `Flask` isn't the only web-framework available. There's `Django`, `Falcon`, `Hug` and many more. For `R`, we have a package called [`plumber`](https://github.com/trestletech/plumber).
 
-Let's dive in!
+### Table of Contents:
 
-### Environment Setup & Flask Basics
+1. __Python Environment Setup & Flask Basics__
+2. __Creating a Machine Learning Model__
+3. __Saving the Machine Learning Model: Serialization & Deserialization__
+4. __Creating an API using Flask__
+
+### 1. Python Environment Setup & Flask Basics
 
 ![Anaconda](https://upload.wikimedia.org/wikipedia/en/c/cd/Anaconda_Logo.png)
 
@@ -41,35 +59,39 @@ Let's dive in!
     
 - We'll try out a simple `Flask` Hello-World application and serve it using `gunicorn`:
 
-```python
+    * Open up your favourite text editor and create `hello-world.py` file in a folder
+    * Write the code below:
+        ```python
 
-"""Filename: hello-world.py
-"""
+        """Filename: hello-world.py
+        """
 
-from flask import Flask
+        from flask import Flask
 
-app = Flask(__name__)
+        app = Flask(__name__)
 
-@app.route('/users/<string:username>')
-def hello_world(username=None):
+        @app.route('/users/<string:username>')
+        def hello_world(username=None):
+
+            return("Hello {}!".format(username))
+
+        ```
+    * Save the file and return to the terminal.
+    * To serve the API (to start running it), execute: `gunicorn --bind 0.0.0.0:8000 hello-world:app` on your terminal.
     
-    return("Hello {}!".format(username))
+    * If you get the repsonses below, you are on the right track:
 
-```
+    ![Hello World](https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp1.png)
 
-- To serve it, run: `gunicorn --bind 0.0.0.0:8000 hello-world:app` on your terminal.
+    * On you browser, try out: `https://localhost:8000/users/any-name`
 
-![Hello World](./images/flaskapp1.png)
+    ![Browser](https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp2.png)
 
-- On you browser, try out: `https://localhost:8000/users/any-name`
-
-![Browser](./images/flaskapp2.png)
-
-With a few simple steps, we were able to create web-endpoints that can be accessed locally. 
+Viola! You wrote your first Flask application. As you have now experienced with a few simple steps, we were able to create web-endpoints that can be accessed locally. And it remains simple going forward too.
 
 Using `Flask`, we can wrap our Machine Learning models and serve them as Web APIs easily. Also, if we want to create more complex web applications (that includes JavaScript `*gasps*`) we just need a few modifications.
 
-### Creating a Machine Learning Model
+### 2. Creating a Machine Learning Model
 
 - We'll be taking up the Machine Learning competition: [Loan Prediction Competition](https://datahack.analyticsvidhya.com/contest/practice-problem-loan-prediction-iii). The main objective is to set a pre-processing pipeline and creating ML Models with goal towards making the ML Predictions easy while deployments. 
 
@@ -461,7 +483,7 @@ grid.predict(test_df)
 
 Our `pipeline` is looking pretty swell & fairly decent to go the most important step of the tutorial: __Serialize the Machine Learning Model__
 
-### Saving the ML Model to serialize & de-serialize
+### 3. Saving Machine Learning Model : Serialization & Deserialization
 
 >In computer science, in the context of data storage, serialization is the process of translating data structures or object state into a format that can be stored (for example, in a file or memory buffer, or transmitted across a network connection link) and reconstructed later in the same or another computer environment.
 
@@ -564,11 +586,11 @@ Since, we already have the `preprocessing` steps required for the new incoming d
 
 `Estimators` and `pipelines` save you time and headache, even if the initial implementation seems to be ridiculous. Stich in time, saves nine!
 
-### Creating an API using Flask
+### 4. Creating an API using Flask
 
 We'll keep the folder structure as simple as possible:
 
-![Folder Struct](./images/flaskapp3.png)
+![Folder Struct](https://raw.githubusercontent.com/pratos/flask_api/master/notebooks/images/flaskapp3.png)
 
 There are three important parts in constructing our wrapper function, `apicall()`:
 
@@ -718,13 +740,21 @@ resp.json()
 
 
 
-#### Final Thoughts
+### End Notes
 
 We have half the battle won here, with a working API that serves predictions in a way where we take one step towards integrating our ML solutions right into our products. This is a very basic API that will help with proto-typing a data product, to make it as fully functional, production ready API a few more additions are required that aren't in the scope of Machine Learning. 
 
+There are a few things to keep in mind when adopting API-first approach:
+
+- Creating APIs out of sphagetti code is next to impossible, so approach your Machine Learning workflow as if you need to create a clean, usable API as a deliverable. Will save you a lot of effort to jump hoops later.
+
+- Try to use version control for models and the API code, `Flask` doesn't provide great support for version control. Saving and keeping track of ML Models is difficult, find out the least messy way that suits you. [This article](https://medium.com/towards-data-science/how-to-version-control-your-machine-learning-task-cad74dce44c4) talks about ways to do it.
+
+- Specific to `sklearn models` (as done in this article), if you are using custom `estimators` for preprocessing or any other related task make sure you keep the `estimator` and `training code` together so that the model pickled would have the `estimator` class tagged along. 
+
 Next logical step would be creating a workflow to deploy such APIs out on a small VM. There are various ways to do it and we'll be looking into those in the next article.
 
-Code & Notebook for this repository: [pratos/flask_api](https://github.com/pratos/flask_api)
+Code & Notebooks for this article: [pratos/flask_api](https://github.com/pratos/flask_api)
 
 __Sources & Links:__
 
@@ -733,3 +763,5 @@ __Sources & Links:__
 [2]. <a id='no2' href="http://www.dreisbach.us/articles/building-scikit-learn-compatible-transformers/">Building Scikit Learn compatible transformers.</a>
 
 [3]. <a id='no2' href="http://flask.pocoo.org/docs/0.10/security/#json-security">Using jsonify in Flask.</a>
+
+[4]. <a id='no2' href="http://blog.luisrei.com/articles/flaskrest.html">Flask-QuickStart.</a>
