@@ -20,7 +20,6 @@ def apicall():
 		test['Dependents'] = [str(x) for x in list(test['Dependents'])]
 
 		#Getting the Loan_IDs separated out
-		#We'll be deleting the rows that have 
 		loan_ids = test['Loan_ID']
 
 	except Exception as e:
