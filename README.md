@@ -1,7 +1,7 @@
 ## Creating Machine Learning API using Flask
-### Code accompanying the AnalyticsVidhya article
+#### Code accompanying the AnalyticsVidhya article
 
-### How to setup the Anaconda environment:
+#### How to setup the Anaconda environment:
 
 - Make sure you have __Anaconda distribution__, if not then visit: [Miniconda Installation](https://conda.io/miniconda.html) to install it.
 - For any queries regarding conda environment, visit: [Managing Conda Environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)
