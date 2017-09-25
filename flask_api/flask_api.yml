@@ -2,19 +2,21 @@ name: flask_api
 channels:
 - defaults
 dependencies:
-- certifi=2016.2.28=py27_0
+- certifi=2016.2.28=py36_0
 - openssl=1.0.2l=0
-- pip=9.0.1=py27_1
-- python=2.7.13=0
+- pip=9.0.1=py36_1
+- python=3.6.2=0
 - readline=6.2=2
-- setuptools=36.4.0=py27_0
+- setuptools=36.4.0=py36_1
 - sqlite=3.13.0=0
 - tk=8.5.18=0
-- wheel=0.29.0=py27_0
+- wheel=0.29.0=py36_0
+- xz=5.2.3=0
 - zlib=1.2.11=0
 - pip:
   - chardet==3.0.4
   - click==6.7
+  - dill==0.2.7.1
   - falcon==1.2.0
   - flask==0.12.2
   - gunicorn==19.7.1
