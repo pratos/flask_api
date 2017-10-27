@@ -1,4 +1,4 @@
-## Creating Machine Learning API using Flask
+## [Creating Machine Learning API using Flask](https://www.analyticsvidhya.com/blog/2017/09/machine-learning-models-as-apis-using-flask/)
 #### Code accompanying the AnalyticsVidhya article
 
 #### How to setup the Anaconda environment:
