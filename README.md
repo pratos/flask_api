@@ -7,4 +7,4 @@
 - For any queries regarding conda environment, visit: [Managing Conda Environments](https://conda.io/docs/user-guide/tasks/manage-environments.html)
 - Go to the folder `./flask_api`, you'll encounter `flask_api.yml` file.
 - In the terminal run command: `conda env create -f flask_api.yml`
-- Once done, run: `source activate flask_api`. Your virutal environment is setup successfully!
+- Once done, run: `source activate flask_api`. Your virtual environment is setup successfully!
